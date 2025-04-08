@@ -6,7 +6,6 @@ import {
   StyleSheet,
   StatusBar,
   Platform,
-  Image,
   Text,
   TouchableOpacity,
 } from 'react-native';
@@ -23,14 +22,7 @@ const Layout = ({children}) => {
       <StatusBar
         translucent
         backgroundColor="transparent"
-        barStyle="dark-content"
-      />
-
-      <LinearGradient
-        colors={['#617eb7', '#7098e8']}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
-        style={styles.statusBarGradient}
+        barStyle="light-content"
       />
 
       <View style={styles.toastStyle}>
@@ -41,44 +33,22 @@ const Layout = ({children}) => {
         colors={['#617eb7', '#7098e8']}
         start={{x: 0, y: 0}}
         end={{x: 1, y: 1}}
-        style={{
-          height: 110,
-          borderBottomLeftRadius: 40,
-          borderBottomRightRadius: 40,
-        }}>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingVertical: 20,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 30,
-          }}>
-          <View style={{flexDirection: 'row', gap: 5, alignItems: 'center'}}>
+        style={styles.headerGradient}>
+        <View style={styles.headerContainer}>
+          <View style={styles.userInfo}>
             <UserIcon name="user" size={50} />
             <View>
-              <Text style={{color: 'white', fontSize: 16, fontWeight: '600'}}>
-                Welcome!
-              </Text>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 11,
-                }}>
-                Jaydon Philips
-              </Text>
+              <Text style={styles.welcomeText}>Welcome!</Text>
+              <Text style={styles.usernameText}>Jaydon Philips</Text>
             </View>
           </View>
 
-          <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
-            <TouchableOpacity
-              style={{backgroundColor: 'white', padding: 5, borderRadius: 20}}>
-              <SearchIcon name="search-outline" size={20} />
+          <View style={styles.iconContainer}>
+            <TouchableOpacity style={styles.iconButton}>
+              <SearchIcon name="search-outline" size={24} />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={{backgroundColor: 'white', padding: 5, borderRadius: 20}}>
-              <NotificationIcon name="notifications-outline" size={20} />
+            <TouchableOpacity style={styles.iconButton}>
+              <NotificationIcon name="notifications-outline" size={24} />
             </TouchableOpacity>
           </View>
         </View>
@@ -108,22 +78,59 @@ const styles = StyleSheet.create({
     height: Platform.OS === 'android' ? StatusBar.currentHeight : 44,
     zIndex: 0,
   },
-  scrollContent: {
-    flexGrow: 1,
-    paddingHorizontal: 16,
-    paddingTop: 10,
-    paddingBottom: 60,
-  },
-  content: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   toastStyle: {
     position: 'absolute',
     top: 10,
     left: 0,
     right: 0,
     zIndex: 99999,
+  },
+  headerGradient: {
+    height: 110,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+  },
+  headerContainer: {
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  userInfo: {
+    flexDirection: 'row',
+    gap: 3,
+    alignItems: 'center',
+  },
+  welcomeText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  usernameText: {
+    color: 'white',
+    fontSize: 11,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  iconButton: {
+    backgroundColor: 'white',
+    padding: 5,
+    borderRadius: 20,
+  },
+  content: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 16,
+    paddingTop: 10,
+    paddingBottom: 60,
   },
 });
 
